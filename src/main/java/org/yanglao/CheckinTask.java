@@ -10,8 +10,8 @@ import java.util.HashMap;
 import java.util.Map;
 @Log4j
 public class CheckinTask {
-    private OkHttpClient client ;
-    private Config config;
+    private final OkHttpClient client ;
+    private final Config config;
     private Call call;
     public CheckinTask(){
         this.client = new OkHttpClient();
