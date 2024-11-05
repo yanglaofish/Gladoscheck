@@ -1,6 +1,7 @@
 package org.yanglao;
 
 import lombok.extern.log4j.Log4j;
+import lombok.extern.slf4j.Slf4j;
 import okhttp3.*;
 import org.yaml.snakeyaml.Yaml;
 
@@ -8,7 +9,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
-@Log4j
+@Slf4j
 public class CheckinTask {
     private final OkHttpClient client ;
     private final Config config;
@@ -50,14 +51,14 @@ public class CheckinTask {
             //System.out.println(response.body().string());
         }catch (IOException e){
             log.error("Error! Checkin Failed!");
-
+            System.out.println("Error! Checkin Failed!");
         }
     }
 
 
 }
 //yaml配置文件读取
-@Log4j
+@Slf4j
 class Config{
     private Yaml config;
     private String Filename;
