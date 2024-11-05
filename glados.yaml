@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: glados-deployment
+  namespace: fishstock
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: glados
+  template:
+    metadata:
+      labels:
+        app: glados
+    spec:
+      containers:
+        - name: glados
+          imagePullPolicy: Never
+          image: glados:v2
+          ports:
+            - containerPort: 8888
+          volumeMounts:
+            - name: log-file
+              mountPath: /check.log
+      volumes:
+        - name: log-file
+          hostPath: 
+            path: /root/log/check.log
+            type: FileOrCreate ## 若无则新建
