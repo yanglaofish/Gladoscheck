@@ -12,7 +12,7 @@ import java.util.Map;
 public class CheckinTask {
     private final OkHttpClient client ;
     private final Config config;
-    private Call call;
+    private Request request;
     public CheckinTask(){
         this.client = new OkHttpClient();
         this.config = new Config("Config.yaml");
@@ -23,7 +23,7 @@ public class CheckinTask {
     private void buildClient(){
         client.newBuilder().build();
         RequestBody body = RequestBody.create(MediaType.parse("application/json;charset=utf-8"),config.find("BODY"));
-        Request request = new Request.Builder()
+        this.request = new Request.Builder()
                 .url(config.find("URL"))
                 .addHeader("Content-Type", "application/json")
                 .addHeader("Cookie", config.find("COOKIE"))
@@ -31,7 +31,7 @@ public class CheckinTask {
                 .addHeader("authority","glados.rocks")
                 .post(body)
                 .build();
-        call = client.newCall(request);
+
     }
 
     /**
@@ -41,16 +41,16 @@ public class CheckinTask {
     public void Check() throws IOException
     {
         try{//尝试请求
+            Call call = client.newCall(request);
             Response response = call.execute();
             if(response.code()==200){
                 log.info("Checkin Success!");
                 System.out.println("Checkin Success!");
             }
-
             //System.out.println(response.body().string());
         }catch (IOException e){
             log.error("Error! Checkin Failed!");
-            throw e;
+
         }
     }
 

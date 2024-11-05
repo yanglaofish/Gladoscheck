@@ -8,7 +8,7 @@ public class Main {
     public static void main(String[] args) {
         TimerTask GladosCheck=new TimerCheck();
         Timer timer = new Timer();
-        timer.schedule(GladosCheck,0, 1000*60*60*24);
+        timer.schedule(GladosCheck,0, 3000);
         //GladosCheck.run();
 
     }
