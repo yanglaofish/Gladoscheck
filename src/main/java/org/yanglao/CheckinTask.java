@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
-@Slf4j
+@Log4j
 public class CheckinTask {
     private final OkHttpClient client ;
     private final Config config;
@@ -51,14 +51,16 @@ public class CheckinTask {
             //System.out.println(response.body().string());
         }catch (IOException e){
             log.error("Error! Checkin Failed!");
+            e.printStackTrace();
             System.out.println("Error! Checkin Failed!");
+            throw e ;
         }
     }
 
 
 }
 //yaml配置文件读取
-@Slf4j
+@Log4j
 class Config{
     private Yaml config;
     private String Filename;
