@@ -2,6 +2,8 @@ target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
+/check.log
+/src/main/resources/Config.yaml
 
 ### IntelliJ IDEA ###
 .idea/modules.xml
